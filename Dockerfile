@@ -10,6 +10,7 @@ RUN /usr/local/bin/pkg -t node8-alpine-x64 app.min.js -o binary
 
 FROM alpine:latest
 RUN apk update && apk add --no-cache libstdc++ libgcc
-WORKDIR /root/
+RUN mkdir /app
+WORKDIR /app
 COPY --from=builder /usr/src/app/binary binary
 CMD ["./binary"]
